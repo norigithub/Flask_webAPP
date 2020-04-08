@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "env\\Scripts\\python.exe",
+    "terminal.integrated.env.windows": {
+      "PSExecutionPolicyPreference": "RemoteSigned",
+      "Scope":  "Process"
+    }
+}
