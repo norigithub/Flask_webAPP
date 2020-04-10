@@ -4,3 +4,20 @@ from flask_blog import app
 @app.route('/')
 def show_etnries():
     return render_template('entries/index.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        for k in request.form.keys():
+            print(k)
+        if request.form['username'] != app.config['USERNAME']:
+            print('ユーザ名が異なります')
+        elif request.form['password'] != app.config['PASSWORD']:
+            print('パスワードが異なります')
+        else:
+            return redirect('/')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    return redirect('/')
