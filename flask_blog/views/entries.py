@@ -1,5 +1,5 @@
 from flask import request, redirect, url_for, render_template, flash, session
-from flask_blog import app
+from flask_blog import app, db
 from flask_blog.models.entries import Entry
 
 @app.route('/')
