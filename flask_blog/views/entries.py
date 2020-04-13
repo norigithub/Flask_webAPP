@@ -6,7 +6,8 @@ from flask_blog.models.entries import Entry
 def show_entries():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    return render_template('entries/index.html')
+    entries = Entry.query.order_by(Entry.post_id.desc()).all()
+    return render_template('entries/index.html', entries=entries)
 
 @app.route('/entries/new', methods=['GET'])
 def new_entry():
@@ -26,3 +27,10 @@ def add_entry():
     db.session.commit()
     flash('新しく記事が作成されました')
     return render_template('entries/index.html')
+
+@app.route('/entries/<int:post_id>', methods=['GET'])
+def show_entry(post_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    entry = Entry.query.get(post_id)
+    return render_template('entries/show.html', entry=entry)
