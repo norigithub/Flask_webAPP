@@ -26,7 +26,7 @@ def add_entry():
     db.session.add(entry)
     db.session.commit()
     flash('新しく記事が作成されました')
-    return render_template('entries/index.html')
+    return redirect(url_for('show_entries'))
 
 @app.route('/entries/<int:post_id>', methods=['GET'])
 def show_entry(post_id):
@@ -34,3 +34,22 @@ def show_entry(post_id):
         return redirect(url_for('login'))
     entry = Entry.query.get(post_id)
     return render_template('entries/show.html', entry=entry)
+
+@app.route('/entries/<int:post_id>/edit', methods=['GET'])
+def edit_entry(post_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    entry = Entry.query.get(post_id)
+    return render_template('entries/edit.html', entry=entry)
+
+@app.route('/entries/<int:post_id>/update', methods=['POST'])
+def update_entry(post_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    entry = Entry.query.get(post_id)
+    entry.title = request.form['title']
+    entry.text = request.form['text']
+    db.session.merge(entry)
+    db.session.commit()
+    flash('記事が更新されました')
+    return redirect(url_for('show_entries'))
