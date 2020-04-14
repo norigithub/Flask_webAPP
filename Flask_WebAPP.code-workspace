@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.env.windows": {
+			"PSExecutionPolicyPreference": "RemoteSigned",
+			"Scope": "Process"
+		},
+		"terminal.integrated.shellArgs.windows": [
+			"-NoExit",
+			"-Command",
+			"env\\Scripts\\activate"
+		]
+	}
+}
