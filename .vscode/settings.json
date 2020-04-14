@@ -5,5 +5,5 @@
       "Scope":  "Process"
     },
     "terminal.integrated.shellArgs.windows": [
-      "-NoExit", "-Command", "env\\Scripts\\activate"]
+      "-NoExit", "-Command", "env\\Scripts\\activate"],
 }

@@ -5,11 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: server.py",
+            "name": "Python: Flask",
             "type": "python",
+            "module": "flask",
+            "args": ["run",],
             "request": "launch",
-            "program": "${workspaceFolder}\\server.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "env": {
+                "FLASK_APP": "flask_blog"
+            }
         }
     ]
 }
