@@ -1,8 +1,11 @@
-from flask_blog import create_app, db
+from flask_blog.scripts.db import init_db, drop_db
+import sys
 
 if __name__ == '__main__':
-    app = create_app()
-    db.init_app(app)
-
-    with app.app_context():
-        db.create_all()
+    arg = sys.argv[1]
+    if arg == 'init':
+        init_db()
+    elif arg == 'drop':
+        drop_db()
+    else:
+        print('Invalid command')
